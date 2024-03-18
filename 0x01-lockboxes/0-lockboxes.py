@@ -25,6 +25,9 @@ def canUnlockAll(boxes):
 
     # Function to recursively explore boxes
     def explore_box(box_index):
+        # Check if the box index is out of bounds
+        if box_index < 0 or box_index >= len(boxes):
+            return
         visited.add(box_index)
         box = boxes[box_index]
         # Iterate through keys in the box
