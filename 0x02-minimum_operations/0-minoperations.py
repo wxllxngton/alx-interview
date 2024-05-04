@@ -19,17 +19,20 @@ def minOperations(n):
     if n <= 0:
         return 0
 
-    operations = 0
-    current_chars = 1
-    clipboard = 0
+    next_char = "H"  # Initialize next character
+    body = "H"  # Initialize body of characters
+    operations = 0  # Initialize operation count
 
-    while current_chars < n:
-        if n % current_chars == 0:
-            clipboard = current_chars
-        current_chars += clipboard
-        operations += 1
+    while len(body) < n:
+        if n % len(body) == 0:
+            operations += 2
+            next_char = body
+            body += body
+        else:
+            operations += 1
+            body += next_char
 
-    if current_chars == n:
-        return operations
-    else:
+    if len(body) != n:  # Check if correct number of characters is reached
         return 0
+
+    return operations
