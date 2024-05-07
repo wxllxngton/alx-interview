@@ -1,4 +1,4 @@
-# /usr/bin/python3
+#!/usr/bin/python3
 """
 Script that determines if a given data set
 represents a valid UTF-8 encoding.
@@ -10,10 +10,11 @@ def validUTF8(data):
     Determines if a given data set represents a valid UTF-8 encoding.
 
     Parameters:
-        data (list) - The data set.
+        data (list): The data set.
 
     Returns:
-        True if a given data set represents a valid UTF-8 encoding.
+        bool: True if the data set represents a valid UTF-8 encoding,
+        False otherwise.
     """
     # Variable to track the number of remaining bytes for the current character
     remaining_bytes = 0
@@ -34,13 +35,12 @@ def validUTF8(data):
                 # Invalid start byte for UTF-8 character
                 return False
         else:
-            # If remaining_bytes > 0, this \
-            #  byte should be a continuation byte
+            # If remaining_bytes > 0, this byte should be a continuation byte
             if byte >> 6 != 0b10:
                 # Invalid continuation byte
                 return False
             remaining_bytes -= 1
 
-    # If after processing all bytes, remaining_bytes \
-    #  is still not zero, it means incomplete sequence
+    # If after processing all bytes, remaining_bytes is still not zero, \
+    # it means incomplete sequence
     return remaining_bytes == 0
